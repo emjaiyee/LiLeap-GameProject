@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -15,6 +18,18 @@ public class MainMenuManager : MonoBehaviour
 
     private Vector3 initialTextPosition;
     private RectTransform textRectTransform;
+    
+    private void OnEnable()
+    {
+        EnhancedTouchSupport.Enable();
+        TouchSimulation.Enable();
+    }
+
+    private void OnDisable()
+    {
+        EnhancedTouchSupport.Disable();
+        TouchSimulation.Disable();
+    }
     
     void Start()
     {
@@ -40,10 +55,23 @@ public class MainMenuManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     PlayGame();
+        // }
+
+        if (Touch.activeTouches.Count > 0)
         {
-            PlayGame();
+            Debug.Log("Touch detected in MainMenuManager Update");
+            Touch currentTouch = Touch.activeTouches[0];
+
+            if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Began)
+            {
+                Debug.Log("Touch began, starting game");
+                PlayGame();
+            }
         }
+        
 
         SpaceToStartJuice();
     }
@@ -69,4 +97,6 @@ public class MainMenuManager : MonoBehaviour
         );
 
     }
+
+    
 }

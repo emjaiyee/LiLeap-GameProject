@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Drawing;
+using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class FrogController : MonoBehaviour
 {
@@ -114,9 +116,15 @@ public class FrogController : MonoBehaviour
 
     void HandleSpinningState()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Touch.activeTouches.Count > 0)
         {
-            LaunchFrog();
+            Touch currentTouch = Touch.activeTouches[0];
+
+            if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Began)
+            {
+                LaunchFrog();
+            }
+            
         }
     }
 
@@ -325,9 +333,6 @@ public class FrogController : MonoBehaviour
 
         //SCORING LOGIC + COMBO
         
-        // float difficultyRatio = Mathf.Clamp01((float)currentScore / difficultyCapScore);
-        // comboWindow = Mathf.Lerp(1.8f, 1.0f, difficultyRatio);
-        
         int scoreGained = 1 + Mathf.Max(0, currentCombo - 1);
         currentScore += scoreGained;
 
@@ -496,6 +501,18 @@ public class FrogController : MonoBehaviour
     private void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    private void OnEnable() 
+    {
+        EnhancedTouchSupport.Enable();
+        TouchSimulation.Enable();    
+    }
+
+    private void OnDisable() 
+    {
+        EnhancedTouchSupport.Disable();
+        TouchSimulation.Disable();    
     }
     
 }
