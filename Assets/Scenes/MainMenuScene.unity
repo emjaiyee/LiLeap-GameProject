@@ -382,7 +382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -285.68, y: -560}
+  m_AnchoredPosition: {x: -285.48, y: -518}
   m_SizeDelta: {x: 397.12, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!210 &106073132
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ( SPACEBAR TO PLAY )
+  m_text: ( Tap to Play)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f3a24193e29e674fbf13a8ff2fb0e12, type: 2}
   m_sharedMaterial: {fileID: 8266494224541470528, guid: 2f3a24193e29e674fbf13a8ff2fb0e12, type: 2}
@@ -445,8 +445,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1592,8 +1592,8 @@ Transform:
   m_GameObject: {fileID: 1004250792}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0076, y: 0.0056, z: 10}
-  m_LocalScale: {x: 17.817284, y: 10.0453, z: 1}
+  m_LocalPosition: {x: 0.0196, y: 0.0087, z: 10}
+  m_LocalScale: {x: 21.743637, y: 10.103646, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330585546}
