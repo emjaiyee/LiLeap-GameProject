@@ -15,8 +15,7 @@ public class MainMenuManager : MonoBehaviour
 
     private Vector3 initialTextPosition;
     private RectTransform textRectTransform;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
 

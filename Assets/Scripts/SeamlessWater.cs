@@ -13,7 +13,8 @@ public class SeamlessWater : MonoBehaviour
 
     private Vector2 currentOffset = Vector2.zero;
     private Vector3 lastCameraPosition;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();

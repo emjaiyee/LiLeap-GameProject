@@ -8,7 +8,6 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 3f;
     public float yOffset = 1f;
 
-    //private UnityEngine.Vector3 originalPosition;
     private float shakeDuration = 0f;
     private float shakeIntensity = 0f;
     private float decayMultiplier = 1f;
