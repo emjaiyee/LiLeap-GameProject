@@ -55,11 +55,7 @@ public class MainMenuManager : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     PlayGame();
-        // }
-
+        //New input system touch detection
         if (Touch.activeTouches.Count > 0)
         {
             Debug.Log("Touch detected in MainMenuManager Update");

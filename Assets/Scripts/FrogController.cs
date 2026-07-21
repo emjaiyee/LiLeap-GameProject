@@ -116,6 +116,8 @@ public class FrogController : MonoBehaviour
 
     void HandleSpinningState()
     {
+
+        // New input handling for touch to launch the frog
         if (Touch.activeTouches.Count > 0)
         {
             Touch currentTouch = Touch.activeTouches[0];
