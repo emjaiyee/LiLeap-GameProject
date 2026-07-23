@@ -74,17 +74,88 @@ public class MainMenuManager : MonoBehaviour
 
         if (isTransitioning) return;
         
-
+        HandleTouchInput();
         SpaceToStartJuice();
     }
 
-    // Update is called once per frame
+    private void HandleTouchInput()
+    {
+        if (Touch.activeTouches.Count > 0)
+        {
+            Touch currentTouch = Touch.activeTouches[0];
+
+            if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Began)
+            {
+                touchStartPosition = currentTouch.screenPosition;
+            }
+            else if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
+            {
+                Vector2 touchEndPosition = currentTouch.screenPosition;
+                float swipeDistance = touchEndPosition.y - touchStartPosition.y;
+
+                if (swipeDistance >= minSwipeDistance)
+                {
+                    // Swipe detected
+                    PlayGame();
+                }
+            }
+        }
+        else if (Pointer.current != null)
+        {
+            if (Pointer.current.press.wasPressedThisFrame)
+            {
+                touchStartPosition = Pointer.current.position.ReadValue();
+            }
+            else if (Pointer.current.press.wasReleasedThisFrame)
+            {
+                Vector2 touchEndPosition = Pointer.current.position.ReadValue();
+                float verticalDistance = touchEndPosition.y - touchStartPosition.y;
+
+                if (verticalDistance > minSwipeDistance)
+                {
+                    PlayGame();
+                }
+            }
+        }
+    }
+
     public void PlayGame()
     {
 
         this.enabled = false;
 
-        SceneManager.LoadScene("PondScene");
+        StartCoroutine(TransitionToGameScene());
+    }
+
+    private System.Collections.IEnumerator TransitionToGameScene()
+    {
+        isTransitioning = true;
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("PondScene");
+        asyncLoad.allowSceneActivation = false;
+
+        Vector2 startPosition = new Vector2(0, -Screen.height);
+        Vector2 endPosition = Vector2.zero;
+        float elapsedTime = 0f;
+
+        if (transitionPanel != null)
+        {
+            transitionPanel.anchoredPosition = startPosition;
+
+            while (elapsedTime < 1f)
+            {
+                elapsedTime += Time.deltaTime * transitionSpeed;
+                transitionPanel.anchoredPosition = Vector2.Lerp(startPosition, endPosition, elapsedTime);
+                yield return null;
+            }
+            transitionPanel.anchoredPosition = endPosition;
+        }
+
+        while(asyncLoad.progress < 0.9f)
+        {
+            yield return null;
+        }
+        asyncLoad.allowSceneActivation = true;
     }
 
     void SpaceToStartJuice()
