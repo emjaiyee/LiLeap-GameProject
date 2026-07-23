@@ -9,15 +9,19 @@ public class MainMenuManager : MonoBehaviour
 {
 
     public TextMeshProUGUI highScoreText;
-
     public TextMeshProUGUI spaceToStartText;
+
+    [SerializeField] private RectTransform transitionPanel;
+    [SerializeField] private float transitionSpeed = 2f; 
+    [SerializeField] private float minSwipeDistance = 100f;
 
     public float bobSpeed = 3f;
     public float bobAmount = 5f;
     
 
     private Vector3 initialTextPosition;
-    private RectTransform textRectTransform;
+    private Vector2 touchStartPosition;
+    private bool isTransitioning = false;
     
     private void OnEnable()
     {
@@ -55,18 +59,20 @@ public class MainMenuManager : MonoBehaviour
 
     void Update()
     {
-        //New input system touch detection
-        if (Touch.activeTouches.Count > 0)
-        {
-            Debug.Log("Touch detected in MainMenuManager Update");
-            Touch currentTouch = Touch.activeTouches[0];
+        // //New input system touch detection
+        // if (Touch.activeTouches.Count > 0)
+        // {
+        //     Debug.Log("Touch detected in MainMenuManager Update");
+        //     Touch currentTouch = Touch.activeTouches[0];
 
-            if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Began)
-            {
-                Debug.Log("Touch began, starting game");
-                PlayGame();
-            }
-        }
+        //     if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Began)
+        //     {
+        //         Debug.Log("Touch began, starting game");
+        //         PlayGame();
+        //     }
+        // }
+
+        if (isTransitioning) return;
         
 
         SpaceToStartJuice();
