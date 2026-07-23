@@ -100,6 +100,7 @@ public class MainMenuManager : MonoBehaviour
                 }
             }
         }
+        // Initial fallback but it does not respond
         else if (Pointer.current != null)
         {
             if (Pointer.current.press.wasPressedThisFrame)
