@@ -72,53 +72,57 @@ public class MainMenuManager : MonoBehaviour
         //     }
         // }
 
-        if (isTransitioning) return;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayGame();
+        }
+        //if (isTransitioning) return;
         
-        HandleTouchInput();
+        //HandleTouchInput();
         SpaceToStartJuice();
     }
 
-    private void HandleTouchInput()
-    {
-        if (Touch.activeTouches.Count > 0)
-        {
-            Touch currentTouch = Touch.activeTouches[0];
+    // private void HandleTouchInput()
+    // {
+    //     if (Touch.activeTouches.Count > 0)
+    //     {
+    //         Touch currentTouch = Touch.activeTouches[0];
 
-            if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Began)
-            {
-                touchStartPosition = currentTouch.screenPosition;
-            }
-            else if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
-            {
-                Vector2 touchEndPosition = currentTouch.screenPosition;
-                float swipeDistance = touchEndPosition.y - touchStartPosition.y;
+    //         if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Began)
+    //         {
+    //             touchStartPosition = currentTouch.screenPosition;
+    //         }
+    //         else if (currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
+    //         {
+    //             Vector2 touchEndPosition = currentTouch.screenPosition;
+    //             float swipeDistance = touchEndPosition.y - touchStartPosition.y;
 
-                if (swipeDistance >= minSwipeDistance)
-                {
-                    // Swipe detected
-                    PlayGame();
-                }
-            }
-        }
-        // Initial fallback but it does not respond
-        else if (Pointer.current != null)
-        {
-            if (Pointer.current.press.wasPressedThisFrame)
-            {
-                touchStartPosition = Pointer.current.position.ReadValue();
-            }
-            else if (Pointer.current.press.wasReleasedThisFrame)
-            {
-                Vector2 touchEndPosition = Pointer.current.position.ReadValue();
-                float verticalDistance = touchEndPosition.y - touchStartPosition.y;
+    //             if (swipeDistance >= minSwipeDistance)
+    //             {
+    //                 // Swipe detected
+    //                 PlayGame();
+    //             }
+    //         }
+    //     }
+    //     // Initial fallback but it does not respond
+    //     else if (Pointer.current != null)
+    //     {
+    //         if (Pointer.current.press.wasPressedThisFrame)
+    //         {
+    //             touchStartPosition = Pointer.current.position.ReadValue();
+    //         }
+    //         else if (Pointer.current.press.wasReleasedThisFrame)
+    //         {
+    //             Vector2 touchEndPosition = Pointer.current.position.ReadValue();
+    //             float verticalDistance = touchEndPosition.y - touchStartPosition.y;
 
-                if (verticalDistance > minSwipeDistance)
-                {
-                    PlayGame();
-                }
-            }
-        }
-    }
+    //             if (verticalDistance > minSwipeDistance)
+    //             {
+    //                 PlayGame();
+    //             }
+    //         }
+    //     }
+    // }
 
     public void PlayGame()
     {
