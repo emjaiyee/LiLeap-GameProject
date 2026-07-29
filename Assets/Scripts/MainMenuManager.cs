@@ -159,6 +159,7 @@ public class MainMenuManager : MonoBehaviour
         asyncLoad.allowSceneActivation = true;
     }
 
+    // Main Menu text juice logic
     void SpaceToStartJuice()
     {
         if (spaceToStartText == null) return;
