@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Drawing;
 using UnityEngine.InputSystem.EnhancedTouch;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch; // TODO: Update input to work on keyboard/mouse for testing
 
 
 // TODO: Have a dedicated GameManager script
