@@ -80,6 +80,7 @@ public class MainMenuManager : MonoBehaviour
         SpaceToStartJuice();
     }
 
+    // TODO: Fix input to work for keyboard/mouse for testing
     private void HandleTouchInput()
     {
         if (Touch.activeTouches.Count > 0)
