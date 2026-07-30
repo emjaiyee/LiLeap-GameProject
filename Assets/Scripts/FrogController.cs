@@ -5,6 +5,8 @@ using System.Drawing;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
+
+// TODO: Have a dedicated GameManager script
 public class FrogController : MonoBehaviour
 {
     public enum FrogState { Spinning, Leaping, Dead };
