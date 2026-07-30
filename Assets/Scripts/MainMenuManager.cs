@@ -11,6 +11,8 @@ public class MainMenuManager : MonoBehaviour
     public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI spaceToStartText;
 
+
+    // TODO: Fix Transition
     [SerializeField] private RectTransform transitionPanel;
     [SerializeField] private float transitionSpeed = 2f; 
     [SerializeField] private float minSwipeDistance = 100f;
